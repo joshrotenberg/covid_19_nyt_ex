@@ -1,0 +1,9 @@
+GET http://localhost:4000/api/state/washington HTTP/1.1
+
+### 
+
+GET http://localhost:4000/api/states/ HTTP/1.1
+
+###
+
+GET http://localhost:4000/api/state/washington/county/Snohomish HTTP/1.1

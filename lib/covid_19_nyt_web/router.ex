@@ -21,6 +21,16 @@ defmodule Covid19Web.Router do
 
   scope "/api", Covid19Web, as: :api do
     pipe_through :api
-    resources "/states", StateController, only: [:show, :index]
+
+    get "/fips/:fips", DataController, :fips
+    get "/states", DataController, :all_states
+    get "/counties", DataController, :all_counties
+    get "/state/:state_name", DataController, :state
+    get "/state/:state_name/county/:county_name", DataController, :state_county
   end
+
+  # scope "/api", Covid19Web, as: :api do
+  # pipe_through :api
+  # resources "/counties", CountyController, only: [:show, :index]
+  # end
 end
