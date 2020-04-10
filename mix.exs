@@ -44,7 +44,8 @@ defmodule Covid19.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:httpoison, "~> 1.6"},
-      {:csv, "~> 2.3"}
+      {:csv, "~> 2.3"},
+      {:distillery, "~> 2.1"}
     ]
   end
 

@@ -12,7 +12,9 @@ database_url =
     """
 
 config :covid_19_nyt, Covid19.Repo,
-  # ssl: true,
+  ssl: true,
+  adapter: Ecto.Adapters.Postgres,
+  database: "",
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
