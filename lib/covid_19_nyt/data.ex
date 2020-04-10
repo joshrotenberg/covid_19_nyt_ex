@@ -12,6 +12,10 @@ defmodule Covid19.Data do
     Repo.all(State)
   end
 
+  def list_counties do
+    Repo.all(County)
+  end
+
   def get_state!(name) do
     Repo.all(from s in State, where: ilike(s.state, ^name))
   end

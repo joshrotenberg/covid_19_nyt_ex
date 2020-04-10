@@ -17,5 +17,6 @@ defmodule Covid19.Data.State do
     state
     |> cast(attrs, [:date, :state, :fips, :cases, :deaths])
     |> validate_required([:date, :state, :fips, :cases, :deaths])
+    |> unique_constraint(:date, name: :states_date_state_index)
   end
 end

@@ -18,5 +18,6 @@ defmodule Covid19.Data.County do
     county
     |> cast(attrs, [:date, :county, :state, :fips, :cases, :deaths])
     |> validate_required([:date, :county, :state, :fips, :cases, :deaths])
+    |> unique_constraint(:date, name: :counties_date_county_state_index)
   end
 end

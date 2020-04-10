@@ -11,7 +11,9 @@ defmodule Covid19.Application do
       # Start the Ecto repository
       Covid19.Repo,
       # Start the endpoint when the application starts
-      Covid19Web.Endpoint
+      Covid19Web.Endpoint,
+      Covid19.Fetcher,
+      {Task.Supervisor, name: Task.UpdateSupervisor}
       # Starts a worker by calling: Covid19.Worker.start_link(arg)
       # {Covid19.Worker, arg},
     ]
