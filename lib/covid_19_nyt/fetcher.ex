@@ -16,7 +16,7 @@ defmodule Covid19.Fetcher do
     Task.Supervisor.async(Task.UpdateSupervisor, &Covid19.Fetcher.State.update_states/0)
     Task.Supervisor.async(Task.UpdateSupervisor, &Covid19.Fetcher.County.update_counties/0)
 
-    schedule_updates()
+    # schedule_updates()
 
     {:noreply, state}
   end
@@ -34,6 +34,6 @@ defmodule Covid19.Fetcher do
   def handle_info(_, state), do: {:noreply, state}
 
   defp schedule_updates do
-    Process.send_after(self(), :work, 60_000)
+    Process.send_after(self(), :work, 600_000)
   end
 end
