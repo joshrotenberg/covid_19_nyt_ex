@@ -1,23 +1,19 @@
 defmodule Covid19.Update.HTTP do
-  # from https://github.com/poeticoding/httpstream_articles
+  # based on https://github.com/poeticoding/httpstream_articles
 
   alias Covid19.Update.EtagAgent
 
   def get(url) do
     Stream.resource(
       fn -> start_fun(url) end,
-
-      # next_fun (multi caluses)
       fn
         %HTTPoison.AsyncResponse{} = resp ->
           handle_async_resp(resp, url)
 
-        # last accumulator when emitting :end
         {:end, resp} ->
           {:halt, resp}
       end,
       fn %HTTPoison.AsyncResponse{id: id} ->
-        # IO.puts("END_FUN")
         :hackney.stop_async(id)
       end
     )
@@ -32,21 +28,16 @@ defmodule Covid19.Update.HTTP do
   defp handle_async_resp(%HTTPoison.AsyncResponse{id: id} = resp, url) do
     receive do
       %HTTPoison.AsyncStatus{id: ^id, code: code} ->
-        # IO.inspect(code, label: "STATUS: ")
         HTTPoison.stream_next(resp)
         {[], resp}
 
       %HTTPoison.AsyncHeaders{id: ^id, headers: headers} ->
-        IO.inspect(headers, label: "HEADERS: ")
-
         update_etag(headers, url)
         HTTPoison.stream_next(resp)
         {[], resp}
 
       %HTTPoison.AsyncChunk{id: ^id, chunk: chunk} ->
-        # IO.inspect(id, label: "ID: ")
         HTTPoison.stream_next(resp)
-        # :erlang.garbage_collect()
         {[chunk], resp}
 
       %HTTPoison.AsyncEnd{id: ^id} ->
@@ -89,7 +80,6 @@ defmodule Covid19.Update.HTTP do
   defp next_lines(:end, prev), do: {[prev], ""}
 
   defp next_lines(chunk, current_line) do
-    # :erlang.garbage_collect()
     next_lines(chunk, current_line, [])
   end
 
