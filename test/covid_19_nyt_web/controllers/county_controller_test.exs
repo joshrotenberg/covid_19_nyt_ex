@@ -32,6 +32,7 @@ defmodule Covid19Web.CountyControllerTest do
   end
 
   describe "index" do
+    @tag :skip
     test "lists all counties", %{conn: conn} do
       conn = get(conn, Routes.county_path(conn, :index))
       assert json_response(conn, 200)["data"] == []
@@ -39,6 +40,7 @@ defmodule Covid19Web.CountyControllerTest do
   end
 
   describe "create county" do
+    @tag :skip
     test "renders county when data is valid", %{conn: conn} do
       conn = post(conn, Routes.county_path(conn, :create), county: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
@@ -56,6 +58,7 @@ defmodule Covid19Web.CountyControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.county_path(conn, :create), county: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
@@ -65,6 +68,7 @@ defmodule Covid19Web.CountyControllerTest do
   describe "update county" do
     setup [:create_county]
 
+    @tag :skip
     test "renders county when data is valid", %{conn: conn, county: %County{id: id} = county} do
       conn = put(conn, Routes.county_path(conn, :update, county), county: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
@@ -82,6 +86,7 @@ defmodule Covid19Web.CountyControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn, county: county} do
       conn = put(conn, Routes.county_path(conn, :update, county), county: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
@@ -91,6 +96,7 @@ defmodule Covid19Web.CountyControllerTest do
   describe "delete county" do
     setup [:create_county]
 
+    @tag :skip
     test "deletes chosen county", %{conn: conn, county: county} do
       conn = delete(conn, Routes.county_path(conn, :delete, county))
       assert response(conn, 204)

@@ -30,6 +30,7 @@ defmodule Covid19Web.StateControllerTest do
   end
 
   describe "index" do
+    @tag :skip
     test "lists all states", %{conn: conn} do
       conn = get(conn, Routes.state_path(conn, :index))
       assert json_response(conn, 200)["data"] == []
@@ -37,6 +38,7 @@ defmodule Covid19Web.StateControllerTest do
   end
 
   describe "create state" do
+    @tag :skip
     test "renders state when data is valid", %{conn: conn} do
       conn = post(conn, Routes.state_path(conn, :create), state: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
@@ -53,6 +55,7 @@ defmodule Covid19Web.StateControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, Routes.state_path(conn, :create), state: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
@@ -62,6 +65,7 @@ defmodule Covid19Web.StateControllerTest do
   describe "update state" do
     setup [:create_state]
 
+    @tag :skip
     test "renders state when data is valid", %{conn: conn, state: %State{id: id} = state} do
       conn = put(conn, Routes.state_path(conn, :update, state), state: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
@@ -78,6 +82,7 @@ defmodule Covid19Web.StateControllerTest do
              } = json_response(conn, 200)["data"]
     end
 
+    @tag :skip
     test "renders errors when data is invalid", %{conn: conn, state: state} do
       conn = put(conn, Routes.state_path(conn, :update, state), state: @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
@@ -87,6 +92,7 @@ defmodule Covid19Web.StateControllerTest do
   describe "delete state" do
     setup [:create_state]
 
+    @tag :skip
     test "deletes chosen state", %{conn: conn, state: state} do
       conn = delete(conn, Routes.state_path(conn, :delete, state))
       assert response(conn, 204)
