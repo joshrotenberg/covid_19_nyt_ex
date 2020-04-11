@@ -46,7 +46,7 @@ defmodule Covid19.Update.State do
     %{
       cases: String.to_integer(cases),
       deaths: String.to_integer(deaths),
-      fips: String.to_integer(fips),
+      fips: fips,
       date: Date.from_iso8601!(date),
       state: state
     }

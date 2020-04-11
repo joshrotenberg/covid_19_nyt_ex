@@ -6,7 +6,7 @@ defmodule Covid19.Data.State do
     field :cases, :integer
     field :date, :date
     field :deaths, :integer
-    field :fips, :integer
+    field :fips, :string
     field :state, :string
 
     timestamps()

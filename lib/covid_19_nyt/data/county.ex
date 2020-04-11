@@ -7,7 +7,7 @@ defmodule Covid19.Data.County do
     field :county, :string
     field :date, :date
     field :deaths, :integer
-    field :fips, :integer
+    field :fips, :string
     field :state, :string
 
     timestamps()
