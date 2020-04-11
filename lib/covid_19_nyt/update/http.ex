@@ -1,7 +1,7 @@
-defmodule Covid19.Fetcher.HTTP do
+defmodule Covid19.Update.HTTP do
   # from https://github.com/poeticoding/httpstream_articles
 
-  alias Covid19.Fetcher.EtagAgent
+  alias Covid19.Update.EtagAgent
 
   def get(url) do
     Stream.resource(
@@ -61,7 +61,7 @@ defmodule Covid19.Fetcher.HTTP do
     |> Enum.filter(fn {k, _} -> k == "ETag" end)
     |> hd
     |> elem(1)
-    |> Covid19.Fetcher.EtagAgent.update_etag(url)
+    |> Covid19.Update.EtagAgent.update_etag(url)
   end
 
   def lines(enum), do: lines(enum, :string_split)

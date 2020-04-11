@@ -1,4 +1,4 @@
-defmodule Covid19.Fetcher.EtagAgent do
+defmodule Covid19.Update.EtagAgent do
   use Agent
 
   def start_link(initial_value) do

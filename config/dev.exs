@@ -30,6 +30,11 @@ config :covid_19_nyt, Covid19Web.Endpoint,
     ]
   ]
 
+# config :covid_19_nyt, Covid19Web.Scheduler,
+# jobs: [
+# {"* * * * *", fn -> IO.puts("running") end}
+# ]
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

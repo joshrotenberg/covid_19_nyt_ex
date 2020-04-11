@@ -20,12 +20,18 @@ config :covid_19_nyt, Covid19Web.Endpoint,
   live_view: [signing_salt: "p9R8dPV5"]
 
 # Configures Elixir's Logger
-config :logger, :console,
+config :logger, :debug,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :covid_19_nyt, Covid19.Scheduler,
+  jobs: [
+    {"* * * * *", {Covid19.Update.State, :update_states, []}},
+    {"* * * * *", {Covid19.Update.County, :update_counties, []}}
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

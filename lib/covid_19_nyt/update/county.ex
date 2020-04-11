@@ -1,6 +1,6 @@
-defmodule Covid19.Fetcher.County do
+defmodule Covid19.Update.County do
   alias Covid19.Data.County
-  alias Covid19.Fetcher.{HTTP, CSV}
+  alias Covid19.Update.{HTTP, CSV}
   alias Covid19.Repo
   require Logger
 
@@ -12,7 +12,7 @@ defmodule Covid19.Fetcher.County do
     HTTP.get(@counties_url)
     |> HTTP.lines()
     |> CSV.decode()
-    |> Enum.take(100)
+    |> Enum.take(1)
     |> Stream.map(&format_county/1)
     |> Stream.map(fn m ->
       changeset = County.changeset(%County{}, m)

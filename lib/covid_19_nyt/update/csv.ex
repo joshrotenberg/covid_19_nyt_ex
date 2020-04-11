@@ -1,4 +1,4 @@
-defmodule Covid19.Fetcher.CSV do
+defmodule Covid19.Update.CSV do
   require Logger
 
   def decode(stream) do

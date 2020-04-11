@@ -6,17 +6,16 @@ defmodule Covid19.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec, warn: false
+
     # List all child processes to be supervised
     children = [
+      Covid19.Scheduler,
       # Start the Ecto repository
       Covid19.Repo,
       # Start the endpoint when the application starts
       Covid19Web.Endpoint,
-      {Covid19.Fetcher.EtagAgent, %{}},
-      Covid19.Fetcher,
-      {Task.Supervisor, name: Task.UpdateSupervisor}
-      # Starts a worker by calling: Covid19.Worker.start_link(arg)
-      # {Covid19.Worker, arg},
+      {Covid19.Update.EtagAgent, %{}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
