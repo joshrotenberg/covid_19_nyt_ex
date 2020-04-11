@@ -11,7 +11,7 @@ defmodule Covid19Web.Endpoint do
   ]
 
   socket "/socket", Covid19Web.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.

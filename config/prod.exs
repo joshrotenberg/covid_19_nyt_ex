@@ -14,7 +14,8 @@ config :covid_19_nyt, Covid19Web.Endpoint,
   http: [port: {:system, "PORT"}],
   server: true,
   secret_key_base: "${SECRET_KEY_BASE}",
-  url: [host: "${APP_NAME}.gigalixrapp.com", port: 443],
+  url: [host: "still-sea-82556.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
