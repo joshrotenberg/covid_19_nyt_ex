@@ -1,7 +1,20 @@
 # Elixir CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-elixir/ for more details
-version: 2
+version: 2.1
+orbs:
+  heroku: circleci/heroku@0.0.10. # Invoke the Heroku orb
+
+workflows:
+  heroku_deploy:
+    jobs:
+      - build
+      - heroku/deploy-via-git: # Use the pre-configured job, deploy-via-git
+          requires:
+            - build
+          filters:
+            branches:
+              only: sequential-branch-filter
 jobs:
   build:
     docker:
