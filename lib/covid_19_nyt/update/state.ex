@@ -11,7 +11,6 @@ defmodule Covid19.Update.State do
     HTTP.get(@states_url)
     |> HTTP.lines()
     |> CSV.decode()
-    |> Enum.take(1)
     |> Stream.map(&format_state/1)
     |> Stream.map(fn m ->
       changeset = State.changeset(%State{}, m)
