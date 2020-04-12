@@ -41,4 +41,9 @@ defmodule Covid19Web.DataController do
         send_resp(conn, :not_found, "")
     end
   end
+
+  def missing_fips(conn, _params) do
+    missing = Data.missing_fips()
+    render(conn, "county_index.json", counties: missing)
+  end
 end

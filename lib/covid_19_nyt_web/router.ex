@@ -27,6 +27,7 @@ defmodule Covid19Web.Router do
     get "/counties", DataController, :all_counties
     get "/state/:state_name", DataController, :state
     get "/state/:state_name/county/:county_name", DataController, :state_county
+    get "/missing_fips", DataController, :missing_fips
   end
 
   # scope "/api", Covid19Web, as: :api do

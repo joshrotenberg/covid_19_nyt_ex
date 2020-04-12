@@ -34,4 +34,8 @@ defmodule Covid19.Data do
   def get_county_by_fips!(fips) do
     Repo.all(from c in County, where: c.fips == ^fips)
   end
+
+  def missing_fips() do
+    Repo.all(from c in County, where: c.fips == "")
+  end
 end

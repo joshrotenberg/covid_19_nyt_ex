@@ -16,7 +16,7 @@ defmodule Covid19.Data.State do
   def changeset(state, attrs) do
     state
     |> cast(attrs, [:date, :state, :fips, :cases, :deaths])
-    |> validate_required([:date, :state, :fips, :cases, :deaths])
+    |> validate_required([:date, :state, :cases, :deaths])
     |> unique_constraint(:date, name: :states_date_state_index)
   end
 end
