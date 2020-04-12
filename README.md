@@ -12,9 +12,9 @@ This project is currently live on Heroku, with the following endpoints available
 
 * https://still-sea-82556.herokuapp.com/api/states - see all state level data
 * https://still-sea-82556.herokuapp.com/api/counties - see all county level data
-* https://still-sea-82556.herokuapp.com/api/state/<state name> - see all data for the supplied state, i.e. [California][4]. State name matching is case insensitive but you must escape spaces in states that have multiple words, i.e. [West%20Virginia][5]
- * https://still-sea-82556.herokuapp.com/api/state/<state name>/counties/<county name> - see all data for the supplied state and county. state and county names are case insensitive and spaces must be escaped.
- * https://still-sea-82556.herokuapp.com/api/fips/<two or five digit code> - look up states or counties by their [Federal Information Processing Standards (FIPS)][6], i.e. [Alameda County][7].
+* https://still-sea-82556.herokuapp.com/api/state/`state name` - see all data for the supplied state, i.e. [California][4]. State name matching is case insensitive but you must escape spaces in states that have multiple words, i.e. [West%20Virginia][5]
+ * https://still-sea-82556.herokuapp.com/api/state/`state name`/counties/`county name` - see all data for the supplied state and county. state and county names are case insensitive and spaces must be escaped.
+ * https://still-sea-82556.herokuapp.com/api/fips/`two or five digit code` - look up states or counties by their [Federal Information Processing Standards (FIPS)][6], i.e. [Alameda County][7].
  * more to come ...
 
 ## Status
