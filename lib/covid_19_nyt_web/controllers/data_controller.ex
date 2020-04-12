@@ -18,12 +18,12 @@ defmodule Covid19Web.DataController do
   end
 
   def state(conn, %{"state_name" => state_name}) do
-    states = Data.get_state!(state_name)
+    states = Data.get_state!(URI.decode(state_name))
     render(conn, "state_index.json", states: states)
   end
 
   def state_county(conn, %{"state_name" => state_name, "county_name" => county_name}) do
-    counties = Data.get_county!(state_name, county_name)
+    counties = Data.get_county!(URI.decode(state_name), URI.decode(county_name))
     render(conn, "county_index.json", counties: counties)
   end
 
