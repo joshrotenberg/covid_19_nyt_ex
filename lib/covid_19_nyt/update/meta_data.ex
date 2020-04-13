@@ -7,7 +7,6 @@ defmodule Covid19.Update.MetaData do
   end
 
   def init(nil) do
-    IO.puts("in init")
     metadata = :ets.new(@ets_table, [:set, :public, :named_table])
     {:ok, nil}
   end
