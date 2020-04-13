@@ -74,17 +74,6 @@ defmodule Covid19.DataTest do
     end
 
     @tag :skip
-    test "update_state/2 with valid data updates the state" do
-      state = state_fixture()
-      assert {:ok, %State{} = state} = Data.update_state(state, @update_attrs)
-      assert state.cases == 43
-      assert state.date == ~D[2011-05-18]
-      assert state.deaths == 43
-      assert state.fips == 43
-      assert state.state == "some updated state"
-    end
-
-    @tag :skip
     test "update_state/2 with invalid data returns error changeset" do
       state = state_fixture()
       assert {:error, %Ecto.Changeset{}} = Data.update_state(state, @invalid_attrs)
