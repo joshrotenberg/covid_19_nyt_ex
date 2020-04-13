@@ -10,7 +10,8 @@ defmodule Covid19.Application do
       Covid19.Scheduler,
       Covid19.Repo,
       Covid19Web.Endpoint,
-      {Covid19.Update.EtagAgent, %{}}
+      {Covid19.Update.EtagAgent, %{}},
+      Covid19.Update.MetaData
     ]
 
     opts = [strategy: :one_for_one, name: Covid19.Supervisor]

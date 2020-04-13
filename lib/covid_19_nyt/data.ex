@@ -24,6 +24,17 @@ defmodule Covid19.Data do
     Repo.all(from s in State, where: s.fips == ^fips)
   end
 
+  def upsert_state(attrs) do
+    changeset = State.changeset(%State{}, attrs)
+
+    Repo.insert(changeset,
+      on_conflict: [
+        set: [cases: changeset.changes.cases, deaths: changeset.changes.deaths]
+      ],
+      conflict_target: [:date, :state]
+    )
+  end
+
   def get_county!(state, county) do
     Repo.all(
       from c in County,
@@ -37,5 +48,17 @@ defmodule Covid19.Data do
 
   def missing_fips() do
     Repo.all(from c in County, where: is_nil(c.fips))
+  end
+
+  def create_state(attrs \\ %{}) do
+    %State{}
+    |> State.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_county(attrs \\ %{}) do
+    %County{}
+    |> County.changeset(attrs)
+    |> Repo.insert()
   end
 end

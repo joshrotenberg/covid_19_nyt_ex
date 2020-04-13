@@ -46,7 +46,8 @@ defmodule Covid19.MixProject do
       {:httpoison, "~> 1.6"},
       {:csv, "~> 2.3"},
       {:quantum, "~> 3.0-rc"},
-      {:distillery, "~> 2.1"}
+      {:distillery, "~> 2.1"},
+      {:credo, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -60,7 +61,7 @@ defmodule Covid19.MixProject do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.reset --quiet", "ecto.migrate", "test"]
     ]
   end
 end

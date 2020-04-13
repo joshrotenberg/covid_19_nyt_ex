@@ -3,16 +3,15 @@ defmodule Covid19.DataTest do
 
   alias Covid19.Data
 
-  @tag :skip
   describe "states" do
     alias Covid19.Data.State
 
-    @valid_attrs %{cases: 42, date: ~D[2010-04-17], deaths: 42, fips: 42, state: "some state"}
+    @valid_attrs %{cases: 42, date: ~D[2010-04-17], deaths: 42, fips: "42", state: "some state"}
     @update_attrs %{
       cases: 43,
       date: ~D[2011-05-18],
       deaths: 43,
-      fips: 43,
+      fips: "43",
       state: "some updated state"
     }
     @invalid_attrs %{cases: nil, date: nil, deaths: nil, fips: nil, state: nil}
@@ -26,31 +25,52 @@ defmodule Covid19.DataTest do
       state
     end
 
-    @tag :skip
     test "list_states/0 returns all states" do
       state = state_fixture()
       assert Data.list_states() == [state]
     end
 
-    @tag :skip
     test "get_state!/1 returns the state with given id" do
       state = state_fixture()
-      assert Data.get_state!(state.id) == state
+      s = Data.get_state!(state.state) |> List.first()
+      assert s.cases == 42
+      assert s.date == ~D[2010-04-17]
+      assert s.deaths == 42
+      assert s.fips == "42"
+      assert s.state == "some state"
     end
 
-    @tag :skip
     test "create_state/1 with valid data creates a state" do
       assert {:ok, %State{} = state} = Data.create_state(@valid_attrs)
       assert state.cases == 42
       assert state.date == ~D[2010-04-17]
       assert state.deaths == 42
-      assert state.fips == 42
+      assert state.fips == "42"
       assert state.state == "some state"
     end
 
-    @tag :skip
     test "create_state/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Data.create_state(@invalid_attrs)
+    end
+
+    test "upsert_state/1 with a new state" do
+      assert {:ok, state} = Data.upsert_state(@valid_attrs)
+      assert state.cases == 42
+      assert state.date == ~D[2010-04-17]
+      assert state.deaths == 42
+      assert state.fips == "42"
+      assert state.state == "some state"
+    end
+
+    test "upsert_state/1 with a previously created state" do
+      assert {:ok, %State{} = state} = Data.create_state(@valid_attrs)
+
+      assert {:ok, updated_state} = Data.upsert_state(%{@valid_attrs | cases: 43})
+      assert updated_state.cases == 43
+      assert updated_state.date == ~D[2010-04-17]
+      assert updated_state.deaths == 42
+      assert updated_state.fips == "42"
+      assert updated_state.state == "some state"
     end
 
     @tag :skip

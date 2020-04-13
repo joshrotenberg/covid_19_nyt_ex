@@ -1,5 +1,7 @@
 # Covid19 Data 
 
+[![Codeship Status for joshrotenberg/covid_19_nyt_ex](https://app.codeship.com/projects/30eb8070-5e6d-0138-d631-1a5231b0cb5f/status?branch=master)](https://app.codeship.com/projects/392339)
+
 This is a [Phoenix][0] application that exposes the data from the [New York Times][1] [Coronavirus (Covid-19) Data in the United States][2] data set. This is “Data from The New York Times, based on reports from state and local health agencies.” For more information, see their [tracking page][3].
 
 ## Warning, Disclaimer, etc.
