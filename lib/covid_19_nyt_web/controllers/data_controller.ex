@@ -46,4 +46,9 @@ defmodule Covid19Web.DataController do
     missing = Data.missing_fips()
     render(conn, "county_index.json", counties: missing)
   end
+
+  def bay_area(conn, _params) do
+    bay_area_counties = Data.bay_area()
+    render(conn, "county_index.json", counties: bay_area_counties)
+  end
 end
