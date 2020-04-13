@@ -1,4 +1,5 @@
 defmodule Covid19.Update.County do
+  alias Covid19.Data
   alias Covid19.Data.County
   alias Covid19.Update.{HTTP, CSV}
   alias Covid19.Repo
@@ -14,22 +15,7 @@ defmodule Covid19.Update.County do
     |> CSV.decode()
     |> Enum.take(5)
     |> Stream.map(&format_county/1)
-    |> Stream.map(fn m ->
-      changeset = County.changeset(%County{}, m)
-
-      case changeset.valid? do
-        true ->
-          Repo.insert(changeset,
-            on_conflict: [
-              set: [cases: changeset.changes.cases, deaths: changeset.changes.deaths]
-            ],
-            conflict_target: [:date, :county, :state]
-          )
-
-        false ->
-          Logger.error(changeset.errors)
-      end
-    end)
+    |> Stream.map(&Data.upsert_county/1)
     |> Stream.run()
 
     {:ok, :counties_update}

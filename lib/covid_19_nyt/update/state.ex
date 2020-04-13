@@ -1,4 +1,5 @@
 defmodule Covid19.Update.State do
+  alias Covid19.Data
   alias Covid19.Data.State
   alias Covid19.Update.{HTTP, CSV}
   alias Covid19.Repo
@@ -12,22 +13,7 @@ defmodule Covid19.Update.State do
     |> HTTP.lines()
     |> CSV.decode()
     |> Stream.map(&format_state/1)
-    |> Stream.map(fn m ->
-      changeset = State.changeset(%State{}, m)
-
-      case changeset.valid? do
-        true ->
-          Repo.insert(changeset,
-            on_conflict: [
-              set: [cases: changeset.changes.cases, deaths: changeset.changes.deaths]
-            ],
-            conflict_target: [:date, :state]
-          )
-
-        false ->
-          Logger.error(changeset.errors)
-      end
-    end)
+    |> Stream.map(&Data.upsert_state/1)
     |> Stream.run()
 
     {:ok, :states_update}
