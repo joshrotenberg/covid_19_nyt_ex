@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :covid_19_nyt, Covid19.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.get_env("PGUSER", "postgres"),
+  password: System.get_env("PGPASSWORD", "postgres"),
   database: "covid_19_nyt_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
