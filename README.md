@@ -11,7 +11,7 @@ This is not my data. I do not work for The New York Times. I do not have any con
 ## Endpoints
 
 This project is currently live on Heroku, with the following endpoints available (more to follow):
-
+ * https://still-sea-82556.herokuapp.com/gql - GraphQL playground (limited data/queries for now)
  * https://still-sea-82556.herokuapp.com/api/states - see all state level data
  * https://still-sea-82556.herokuapp.com/api/counties - see all county level data
  * https://still-sea-82556.herokuapp.com/api/state/state_name - see all data for the supplied state, i.e. [California][4]. State name matching is case insensitive but you must escape spaces in states that have multiple words, i.e. [West%20Virginia][5]
