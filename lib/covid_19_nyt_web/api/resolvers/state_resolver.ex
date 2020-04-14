@@ -17,7 +17,13 @@ defmodule Covid19Web.Api.Resolvers.StateResolver do
   end
 
   def find(_parent, args, _resolution) do
-    case Repo.all(from s in State, where: s.state == ^args[:state]) do
+    IO.inspect(args)
+
+    case Repo.all(
+           from s in State,
+             where: s.state == ^args[:state],
+             order_by: s.date
+         ) do
       nil -> {:error, "Not found"}
       states -> {:ok, states}
     end
