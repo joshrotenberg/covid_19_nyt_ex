@@ -47,6 +47,8 @@ defmodule Covid19.MixProject do
       {:csv, "~> 2.3"},
       {:quantum, "~> 3.0-rc"},
       {:distillery, "~> 2.1"},
+      {:absinthe, "~> 1.4.16"},
+      {:absinthe_plug, "~> 1.4.6"},
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false}
     ]
   end

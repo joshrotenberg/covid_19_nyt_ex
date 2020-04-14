@@ -31,6 +31,11 @@ defmodule Covid19Web.Router do
     get "/bay_area", DataController, :bay_area
   end
 
+  scope "/gql", as: :api do
+    get "/", Absinthe.Plug.GraphiQL, schema: Covid19Web.Api.Schema, interface: :playground
+    post "/", Absinthe.Plug, schema: Covid19Web.Api.Schema
+  end
+
   # scope "/api", Covid19Web, as: :api do
   # pipe_through :api
   # resources "/counties", CountyController, only: [:show, :index]
