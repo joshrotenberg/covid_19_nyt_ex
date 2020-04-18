@@ -10,6 +10,10 @@ defmodule Covid19Web.DataView do
     %{data: render_many(states, DataView, "state.json", as: :state)}
   end
 
+  def render("us_index.json", %{us: us}) do
+    %{data: render_many(us, DataView, "us.json", as: :us)}
+  end
+
   def render("show_county.json", %{county: county}) do
     %{data: render_one(county, DataView, "county.json")}
   end
@@ -38,6 +42,15 @@ defmodule Covid19Web.DataView do
       fips: state.fips,
       cases: state.cases,
       deaths: state.deaths
+    }
+  end
+
+  def render("us.json", %{us: us}) do
+    %{
+      id: us.id,
+      date: us.date,
+      cases: us.cases,
+      deaths: us.deaths
     }
   end
 end

@@ -33,7 +33,8 @@ config :covid_19_nyt, Covid19Web.Endpoint,
 config :covid_19_nyt, Covid19.Scheduler,
   jobs: [
     {"* * * * *", {Covid19.Update.State, :update_states, []}},
-    {"* * * * *", {Covid19.Update.County, :update_counties, []}}
+    {"* * * * *", {Covid19.Update.County, :update_counties, []}},
+    {"* * * * *", {Covid19.Update.US, :update_us, []}}
   ]
 
 # ## SSL Support

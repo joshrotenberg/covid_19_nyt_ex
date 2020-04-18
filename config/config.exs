@@ -20,7 +20,8 @@ config :phoenix, :json_library, Jason
 config :covid_19_nyt, Covid19.Scheduler,
   jobs: [
     {"@hourly", {Covid19.Update.State, :update_states, []}},
-    {"@hourly", {Covid19.Update.County, :update_counties, []}}
+    {"@hourly", {Covid19.Update.County, :update_counties, []}},
+    {"@hourly", {Covid19.Update.US, :update_us, []}}
   ]
 
 import_config "#{Mix.env()}.exs"

@@ -6,7 +6,7 @@ defmodule Covid19.Data do
   import Ecto.Query, warn: false
   alias Covid19.Repo
 
-  alias Covid19.Data.{State, County}
+  alias Covid19.Data.{State, County, US}
 
   @bay_area_counties [
     "Alameda",
@@ -26,6 +26,10 @@ defmodule Covid19.Data do
 
   def list_counties do
     Repo.all(from c in County, order_by: c.date)
+  end
+
+  def list_us do
+    Repo.all(from u in US, order_by: u.date)
   end
 
   def get_state!(name) do
@@ -79,6 +83,17 @@ defmodule Covid19.Data do
         set: [cases: changeset.changes.cases, deaths: changeset.changes.deaths]
       ],
       conflict_target: [:date, :county, :state]
+    )
+  end
+
+  def upsert_us(attrs) do
+    changeset = US.changeset(%US{}, attrs)
+
+    Repo.insert(changeset,
+      on_conflict: [
+        set: [cases: changeset.changes.cases, deaths: changeset.changes.deaths]
+      ],
+      conflict_target: [:date]
     )
   end
 

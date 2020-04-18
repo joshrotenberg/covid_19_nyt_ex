@@ -17,6 +17,11 @@ defmodule Covid19Web.DataController do
     render(conn, "county_index.json", counties: counties)
   end
 
+  def all_us(conn, _params) do
+    us = Data.list_us()
+    render(conn, "us_index.json", us: us)
+  end
+
   def state(conn, %{"state_name" => state_name}) do
     states = Data.get_state!(URI.decode(state_name))
     render(conn, "state_index.json", states: states)
