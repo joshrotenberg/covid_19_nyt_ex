@@ -20,12 +20,20 @@ defmodule Covid19.Api.Schema.StateTypes do
 
     @desc "Get state data for a particular state"
     field :state, list_of(:state) do
-      # arg(:state, non_null(:string))
       arg(:state, :string)
       arg(:fips, :string)
       arg(:cases, :integer)
       arg(:deaths, :integer)
       arg(:date, :date)
+
+      arg(:date_before, :date)
+      arg(:date_after, :date)
+
+      arg(:cases_less_than, :integer)
+      arg(:cases_greater_than, :integer)
+
+      arg(:deaths_less_than, :integer)
+      arg(:deaths_greater_than, :integer)
       resolve(&Resolvers.StateResolver.find/3)
     end
   end
