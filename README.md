@@ -18,6 +18,7 @@ This project is currently live on Heroku, with the following endpoints available
  * https://still-sea-82556.herokuapp.com/api/state/state_name/counties/county_name - see all data for the supplied state and county. state and county names are case insensitive and spaces must be escaped.
  * https://still-sea-82556.herokuapp.com/api/fips/two_or_five_digit_code - look up states or counties by their [Federal Information Processing Standards (FIPS)][6], i.e. [Alameda County][7].
  * https://still-sea-82556.herokuapp.com/api/missing_fips - some records in the county data are missing fips. this endpoint displays them all.
+ * https://still-sea-82556.herokuapp.com/api/us - all us data.
  * more to come ...
 
 ## Status
