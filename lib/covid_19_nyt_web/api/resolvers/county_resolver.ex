@@ -5,7 +5,6 @@ defmodule Covid19Web.Api.Resolvers.CountyResolver do
   alias Covid19Web.Api.Resolvers.Dynamic
 
   def list(_parent, _args, _resolution) do
-    IO.inspect("called")
     {:ok, Repo.all(County)}
   end
 
