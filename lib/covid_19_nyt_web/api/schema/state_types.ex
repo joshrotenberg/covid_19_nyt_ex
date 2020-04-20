@@ -2,6 +2,7 @@ defmodule Covid19.Api.Schema.StateTypes do
   use Absinthe.Schema.Notation
 
   alias Covid19Web.Api.Resolvers
+
   @desc "US State Covid19 Data"
   object :state do
     field :id, non_null(:id)

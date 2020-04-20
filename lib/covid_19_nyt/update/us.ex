@@ -14,7 +14,7 @@ defmodule Covid19.Update.US do
     |> CSV.decode()
     |> Stream.map(&format_us/1)
     |> Stream.map(&Data.upsert_us/1)
-     |> Stream.run()
+    |> Stream.run()
 
     {:ok, :us_update}
   end
