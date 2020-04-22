@@ -1,11 +1,18 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Covid19.Repo.insert!(%Covid19.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+alias Covid19.Repo
+alias Covid19.Data.ZipCode
+
+@zips2fips "zips2fips.json"
+
+@zip2fip
+|> Path.absname("./priv/repo/seeds/zip")
+|> Path.expand()
+|> File.read!()
+|> Jason.decode!()
+|> Enum.each(fn item ->
+  %ZipCode{}
+  |> ZipCode.changeset(%{
+    zip: elem(item, 0),
+    fips: elem(item, 1)
+  })
+  |> Repo.insert!(on_conflict: :nothing)
+end)
