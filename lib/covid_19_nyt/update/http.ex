@@ -1,5 +1,9 @@
 defmodule Covid19.Update.HTTP do
-  # based on https://github.com/poeticoding/httpstream_articles
+  @moduledoc """
+  HTTP functions for pulling down the CSV files. HTTP calls respect the ETag header to avoid fetching
+  files that haven't changed.
+  Based heavily on https://github.com/poeticoding/httpstream_articles
+  """
 
   alias Covid19.Update.EtagAgent
 

@@ -1,4 +1,7 @@
 defmodule Covid19Web.Api.Resolvers.Dynamic do
+  @moduledoc """
+  Shared Dynamic queries for GraphQL resolvers.
+  """
   import Ecto.Query
 
   def filter_where(params) do

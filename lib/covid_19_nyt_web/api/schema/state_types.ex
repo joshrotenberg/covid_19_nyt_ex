@@ -1,4 +1,7 @@
 defmodule Covid19.Api.Schema.StateTypes do
+  @moduledoc """
+  Types for State GraphQL queries.
+  """
   use Absinthe.Schema.Notation
 
   alias Covid19Web.Api.Resolvers

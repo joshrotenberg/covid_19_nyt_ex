@@ -1,4 +1,7 @@
 defmodule Covid19Web.Api.Schema do
+  @moduledoc """
+  GraphQL schema.
+  """
   use Absinthe.Schema
 
   import_types(Absinthe.Type.Custom)

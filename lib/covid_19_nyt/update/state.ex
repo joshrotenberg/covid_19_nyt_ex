@@ -1,8 +1,11 @@
 defmodule Covid19.Update.State do
+  @moduledoc """
+  State CSV file update pipeline.
+  """
+
   alias Covid19.Data
-  alias Covid19.Data.State
   alias Covid19.Update.{HTTP, CSV}
-  alias Covid19.Repo
+
   require Logger
 
   @states_url "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv"

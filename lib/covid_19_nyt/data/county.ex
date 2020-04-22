@@ -1,4 +1,5 @@
 defmodule Covid19.Data.County do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,4 +1,7 @@
 defmodule Covid19Web.Api.Resolvers.CountyResolver do
+  @moduledoc """
+  County Data resolvers.
+  """
   alias Covid19.Data.County
   import Ecto.Query
   alias Covid19.Repo

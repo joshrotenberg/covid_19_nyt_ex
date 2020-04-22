@@ -1,4 +1,7 @@
 defmodule Covid19.Update.US do
+  @moduledoc """
+  US CSV file update pipeline.
+  """
   alias Covid19.Data
   alias Covid19.Update.{HTTP, CSV}
 

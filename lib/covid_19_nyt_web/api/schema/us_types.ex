@@ -1,4 +1,7 @@
 defmodule Covid19.Api.Schema.USTypes do
+  @moduledoc """
+  Types for US GraphQL queries.
+  """
   use Absinthe.Schema.Notation
 
   alias Covid19Web.Api.Resolvers
@@ -14,7 +17,7 @@ defmodule Covid19.Api.Schema.USTypes do
   object :us_queries do
     # @desc "Get all US data"
     # field :us, list_of(:us) do
-      # resolve(&Resolvers.USResolver.list/3)
+    # resolve(&Resolvers.USResolver.list/3)
     # end
 
     @desc "Get us data"

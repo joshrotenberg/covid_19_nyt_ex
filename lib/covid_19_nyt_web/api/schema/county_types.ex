@@ -1,4 +1,7 @@
 defmodule Covid19.Api.Schema.CountyTypes do
+  @moduledoc """
+  Types for County GraphQL queries.
+  """
   use Absinthe.Schema.Notation
 
   alias Covid19Web.Api.Resolvers

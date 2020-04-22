@@ -1,8 +1,10 @@
 defmodule Covid19.Update.County do
-  alias Covid19.Data
-  alias Covid19.Data.County
+  @moduledoc """
+  County CSV file update pipeline.
+  """
+
   alias Covid19.Update.{HTTP, CSV}
-  alias Covid19.Repo
+  alias Covid19.Data
   require Logger
 
   @counties_url "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
@@ -12,6 +14,7 @@ defmodule Covid19.Update.County do
 
     HTTP.get(@counties_url)
     |> HTTP.lines()
+    |> Enum.take(10)
     |> CSV.decode()
     |> Stream.map(&format_county/1)
     |> Stream.map(&Data.upsert_county/1)

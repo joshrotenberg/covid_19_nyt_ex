@@ -1,6 +1,9 @@
 defmodule Covid19.Update.EtagAgent do
-  use Agent
+  @moduledoc """
+  Agent wrapper for caching ETags.
+  """
 
+  use Agent
   require Logger
 
   def start_link(initial_value) do
