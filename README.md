@@ -35,6 +35,14 @@ The data sets are two CSV files. They are pulled via HTTP hourly, parsed and loa
 
 Because each data point represents a single day's numbers (Covid19 cases and deaths per day per state or county), the data is continually growing and periodically adjusted to reflect new information. To model this on the database side, rows have a unique constraint on the date and state (and county for county data) so that revised data is fixed rather than added. 
 
+
+## TODO
+
+* the CSV parsing pipelines could be more `dry`, lots of repeated code
+* docs in the code
+* tests
+* configify the CSV urls and make local endpoints to serve for testing and development
+
 ### Running locally
 
 To start your Phoenix server:
