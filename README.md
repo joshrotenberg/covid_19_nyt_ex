@@ -21,6 +21,10 @@ This project is currently live on Heroku, with the following endpoints available
  * https://still-sea-82556.herokuapp.com/api/us - all us data.
  * more to come ...
 
+## Screenshot
+
+![Image of Playground](screenshot.png)
+
 ## Status
 
 This is a hobby project and is a work in progress, therefore it may be broken or incomplete at times. If you happen to find this useful or have any suggestions or problems, please let me know, file an issue, contribute, etc.
