@@ -3,7 +3,7 @@ defmodule Covid19.Update.US do
   US CSV file update pipeline.
   """
   alias Covid19.Data
-  alias Covid19.Update.{HTTP, CSV}
+  alias Covid19.Update.{CSV, HTTP}
 
   require Logger
 

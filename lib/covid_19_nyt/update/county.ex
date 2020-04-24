@@ -3,8 +3,9 @@ defmodule Covid19.Update.County do
   County CSV file update pipeline.
   """
 
-  alias Covid19.Update.{HTTP, CSV}
   alias Covid19.Data
+  alias Covid19.Update.{CSV, HTTP}
+
   require Logger
 
   @counties_url "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
@@ -34,22 +35,20 @@ defmodule Covid19.Update.County do
            "deaths" => deaths
          }}
       ) do
-    try do
-      %{
-        cases: String.to_integer(cases),
-        deaths: String.to_integer(deaths),
-        fips: fips,
-        date: Date.from_iso8601!(date),
-        state: state,
-        county: county
-      }
-    rescue
-      e in ArgumentError ->
-        Logger.error(e.message)
-        %{}
+    %{
+      cases: String.to_integer(cases),
+      deaths: String.to_integer(deaths),
+      fips: fips,
+      date: Date.from_iso8601!(date),
+      state: state,
+      county: county
+    }
+  rescue
+    e in ArgumentError ->
+      Logger.error(e.message)
+      %{}
 
-      e in _ ->
-        Logger.error(e)
-    end
+    e in _ ->
+      Logger.error(e)
   end
 end

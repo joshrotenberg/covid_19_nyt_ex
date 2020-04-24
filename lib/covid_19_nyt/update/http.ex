@@ -56,7 +56,7 @@ defmodule Covid19.Update.HTTP do
     |> Enum.filter(fn {k, _} -> k == "ETag" end)
     |> hd
     |> elem(1)
-    |> Covid19.Update.EtagAgent.update_etag(url)
+    |> EtagAgent.update_etag(url)
   end
 
   def lines(enum), do: lines(enum, :string_split)

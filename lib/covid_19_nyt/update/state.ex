@@ -4,7 +4,7 @@ defmodule Covid19.Update.State do
   """
 
   alias Covid19.Data
-  alias Covid19.Update.{HTTP, CSV}
+  alias Covid19.Update.{CSV, HTTP}
 
   require Logger
 

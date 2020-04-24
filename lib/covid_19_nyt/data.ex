@@ -2,11 +2,10 @@ defmodule Covid19.Data do
   @moduledoc """
   The Data context.
   """
-
-  import Ecto.Query, warn: false
+  alias Covid19.Data.{County, State, US}
   alias Covid19.Repo
 
-  alias Covid19.Data.{State, County, US}
+  import Ecto.Query, warn: false
 
   @bay_area_counties [
     "Alameda",
@@ -97,11 +96,11 @@ defmodule Covid19.Data do
     )
   end
 
-  def missing_fips() do
+  def missing_fips do
     Repo.all(from c in County, where: is_nil(c.fips))
   end
 
-  def bay_area() do
+  def bay_area do
     Repo.all(
       from c in County,
         where: c.county in @bay_area_counties,
