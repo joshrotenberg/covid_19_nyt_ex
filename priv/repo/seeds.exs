@@ -1,9 +1,7 @@
 alias Covid19.Repo
 alias Covid19.Data.ZipCode
 
-@zips2fips "zips2fips.json"
-
-@zip2fip
+"zip2fips.json"
 |> Path.absname("./priv/repo/seeds/zip")
 |> Path.expand()
 |> File.read!()
