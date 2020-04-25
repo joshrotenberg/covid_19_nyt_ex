@@ -15,7 +15,6 @@ defmodule Covid19.Update.County do
 
     HTTP.get(@counties_url)
     |> HTTP.lines()
-    |> Enum.take(10)
     |> CSV.decode()
     |> Stream.map(&format_county/1)
     |> Stream.map(&Data.upsert_county/1)
