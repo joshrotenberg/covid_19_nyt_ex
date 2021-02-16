@@ -1,4 +1,4 @@
-# Covid19 Data 
+# Covid19 Data
 
 [![Codeship Status for joshrotenberg/covid_19_nyt_ex](https://app.codeship.com/projects/30eb8070-5e6d-0138-d631-1a5231b0cb5f/status?branch=master)](https://app.codeship.com/projects/392339)
 
@@ -16,7 +16,7 @@ This project is currently live on Heroku, with the following endpoints available
  * https://still-sea-82556.herokuapp.com/api/states - see all state level data
  * https://still-sea-82556.herokuapp.com/api/counties - see all county level data
  * https://still-sea-82556.herokuapp.com/api/state/state_name - see all data for the supplied state, i.e. [California][4]. State name matching is case insensitive but you must escape spaces in states that have multiple words, i.e. [West%20Virginia][5]
- * https://still-sea-82556.herokuapp.com/api/state/state_name/counties/county_name - see all data for the supplied state and county. state and county names are case insensitive and spaces must be escaped.
+ * https://still-sea-82556.herokuapp.com/api/state/state_name/county/county_name - see all data for the supplied state and county. state and county names are case insensitive and spaces must be escaped.
  * https://still-sea-82556.herokuapp.com/api/fips/two_or_five_digit_code - look up states or counties by their [Federal Information Processing Standards (FIPS)][6], i.e. [Alameda County][7].
  * https://still-sea-82556.herokuapp.com/api/missing_fips - some records in the county data are missing fips. this endpoint displays them all.
  * https://still-sea-82556.herokuapp.com/api/us - all us data.
@@ -38,7 +38,7 @@ This is a [Phoenix][0] project written in [Elixir][8]. It uses [Absinthe][9] for
 
 The data sets are two CSV files. They are pulled via HTTP hourly, parsed and loaded into a Postgres database. The data model is simple and mirrors that of each data set. The two sets are completely independent. The HTTP ETag is respected so that file are only pulled and parsed if they've changed since the last pull (or last app tartup since the ETag data is stored in memory). As of today, it looks like the files are updated daily, sometimes several times to fix incorrect data, so an hourly pull should keep this application's data fresh.
 
-Because each data point represents a single day's numbers (Covid19 cases and deaths per day per state or county), the data is continually growing and periodically adjusted to reflect new information. To model this on the database side, rows have a unique constraint on the date and state (and county for county data) so that revised data is fixed rather than added. 
+Because each data point represents a single day's numbers (Covid19 cases and deaths per day per state or county), the data is continually growing and periodically adjusted to reflect new information. To model this on the database side, rows have a unique constraint on the date and state (and county for county data) so that revised data is fixed rather than added.
 
 
 ## TODO
