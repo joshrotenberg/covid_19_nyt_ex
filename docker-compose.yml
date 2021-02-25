@@ -1,0 +1,18 @@
+version: '3.6'
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres-stargazers
+    environment:
+      PGDATA: /var/lib/postgresql/data/pgdata
+      POSTGRES_DB: covid_19_nyt_dev 
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data'
+volumes:
+  pgdata:
